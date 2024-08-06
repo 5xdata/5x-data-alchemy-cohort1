@@ -1,0 +1,110 @@
+version: 2
+
+models:
+  - name: dim_customer
+    description: "Customer Dimension Data"
+    columns:
+      - name: customer_id
+        description: Customer ID
+      - name: uuid
+        description: UUID
+      - name: customer_zip_code
+        description: Customer Zip Code
+      - name: customer_city
+        description: Customer City
+      - name: customer_state
+        description: Customer State
+      - name: geolocation_lat
+        description: Geolocation Latitude
+      - name: geolocation_lng
+        description: Geolocation Longitude
+
+  - name: dim_product
+    description: "Product Dimension Data"
+    columns:
+      - name: product_id
+        description: Product ID
+      - name: product_category_name_english
+        description: Product Category Name (English)
+      - name: product_category_name
+        description: Product Category Name
+      - name: product_name_length
+        description: Product Name Length
+      - name: product_description_length
+        description: Product Description Length
+      - name: product_photos_qty
+        description: Number of Product Photos
+      - name: product_weight_g
+        description: Product Weight in grams
+      - name: product_length_cm
+        description: Product Length in centimeters
+      - name: product_height_cm
+        description: Product Height in centimeters
+      - name: product_width_cm
+        description: Product Width in centimeters
+
+  - name: dim_seller
+    description: "Seller Dimension Data"
+    columns:
+      - name: seller_id
+        description: Seller ID
+      - name: seller_zip_code
+        description: Seller Zip Code
+      - name: seller_city
+        description: Seller City
+      - name: seller_state
+        description: Seller State
+      - name: geolocation_lat
+        description: Geolocation Latitude
+      - name: geolocation_lng
+        description: Geolocation Longitude
+
+  - name: fct_order
+    description: "Order Fact Data"
+    columns:
+      - name: order_id
+        description: Order ID
+      - name: customer_id
+        description: Customer ID
+      - name: order_status
+        description: Order Status
+      - name: order_purchase_timestamp
+        description: Order Purchase Timestamp
+      - name: order_approved_at
+        description: Order Approved Timestamp
+      - name: order_delivered_carrier_date
+        description: Order Delivered to Carrier Date
+      - name: order_delivered_customer_date
+        description: Order Delivered to Customer Date
+      - name: order_estimated_delivery_date
+        description: Order Estimated Delivery Date
+      - name: product_id
+        description: Product ID
+      - name: seller_id
+        description: Seller ID
+      - name: shipping_limit_date
+        description: Shipping Limit Date
+      - name: total_price
+        description: Total Price of the Order
+      - name: total_delivery_charges
+        description: Total Delivery Charges
+      - name: total_order_value
+        description: Total Order Value
+      - name: payment_sequential
+        description: Payment Sequential Number
+      - name: number_of_investments
+        description: Number of Investments
+      - name: payment_type
+        description: Payment Type
+      - name: review_id
+        description: Review ID
+      - name: review_score
+        description: Review Score
+      - name: review_comment_title
+        description: Review Comment Title
+      - name: review_comment_message
+        description: Review Comment Message
+      - name: review_creation_date
+        description: Review Creation Date
+      - name: review_answer_timestamp
+        description: Review Answer Timestamp

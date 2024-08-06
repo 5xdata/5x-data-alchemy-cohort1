@@ -1,0 +1,222 @@
+version: 2
+
+models:
+  - name: stg_ecommerce__customers
+    description: Customer Data
+    columns:
+      - name: customer_id
+        description: Customer ID
+        tests:
+          - not_null
+          - unique
+      - name: uuid
+        description: Unique customer ID
+      - name: customer_zip_code
+        description: Customer Zip Code
+      - name: customer_city
+        description: Customer City
+      - name: customer_state
+        description: Customer State
+
+  - name: stg_ecommerce__geolocations
+    description: Geolocation Data
+    columns:
+      - name: geolocation_zip_code
+        description: Geolocation Zip Code
+        tests:
+          - not_null
+          - unique
+      - name: geolocation_lat
+        description: Geolocation Latitude Coordinates
+      - name: geolocation_lng
+        description: Geolocation Longitude Coordinates
+      - name: geolocation_city
+        description: Geolocation City
+      - name: geolocation_state
+        description: Geolocation State
+
+  - name: stg_ecommerce__order_payments
+    description: Order Payments data
+    columns:
+      - name: order_id
+        description: Order identifier
+        tests:
+          - not_null
+      - name: payment_sequential
+        description: Payment sequential number
+      - name: payment_type
+        description: Payment type
+        tests:
+          - not_null
+          - accepted_values:
+              values: ["credit_card", "invoice", "not_defined", "voucher", "debit_card"]
+      - name: installments
+        description: Number of installments
+      - name: amount
+        description: Payment amount
+
+  - name: stg_ecommerce__orders
+    description: Orders Data
+    columns:
+      - name: order_id
+        description: Order identifier
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: Customer identifier
+      - name: order_status
+        description: Order status
+        tests:
+          - not_null
+          - accepted_values:
+              values: ["delivered", "invoiced", "shipped", "processing", "unavailable", "canceled", "created", "approved"]
+      - name: order_purchase_timestamp
+        description: Order purchase timestamp
+      - name: order_approved_at
+        description: Order approved timestamp
+      - name: order_delivered_carrier_date
+        description: Order delivered to carrier date
+      - name: order_delivered_customer_date
+        description: Order delivered to customer date
+      - name: order_estimated_delivery_date
+        description: Order estimated delivery date
+
+  - name: stg_ecommerce__products
+    description: Products data
+    columns:
+      - name: product_id
+        description: Product identifier
+        tests:
+          - not_null
+          - unique
+      - name: product_category_name
+        description: Product category name
+      - name: product_name_length
+        description: Product name length
+      - name: product_description_length
+        description: Product description length
+      - name: product_photos_qty
+        description: Number of product photos
+      - name: product_weight_g
+        description: Product weight in grams
+      - name: product_length_cm
+        description: Product length in centimeters
+      - name: product_height_cm
+        description: Product height in centimeters
+      - name: product_width_cm
+        description: Product width in centimeters
+
+  - name: stg_ecommerce__product_category_name_translation
+    description: Product category data
+    columns:
+      - name: product_category_name_local
+        description: Local product category name
+      - name: product_category_name_english
+        description: English product category name
+
+  - name: stg_ecommerce__sellers
+    description: Seller data
+    columns:
+      - name: seller_id
+        description: Seller identifier
+        tests:
+          - not_null
+          - unique
+      - name: seller_zip_code
+        description: Seller ZIP code
+      - name: seller_city
+        description: Seller city
+      - name: seller_state
+        description: Seller state
+
+  - name: stg_ecommerce__closed_leads
+    description: Closed deals data
+    columns:
+      - name: mql_id
+        description: Identifier for Marketing Qualified Lead (MQL)
+      - name: average_stock
+        description: Average stock availability
+      - name: seller_id
+        description: Identifier for the seller
+      - name: business_type
+        description: Type of business associated with the lead
+      - name: won_date
+        description: Date when the lead was won
+      - name: declared_product_catalog_size
+        description: Size of the declared product catalog
+      - name: sr_id
+        description: Identifier for Sales Representative (SR)
+      - name: declared_monthly_revenue
+        description: Monthly revenue declared by the lead
+      - name: sdr_id
+        description: Identifier for Sales Development Representative (SDR)
+      - name: business_segment
+        description: Segment of the business associated with the lead
+      - name: lead_type
+        description: Type of lead
+      - name: lead_behaviour_profile
+        description: Behavioral profile of the lead
+      - name: has_company
+        description: Boolean indicating if the lead has associated company information
+      - name: has_gtin
+        description: Boolean indicating if the lead has GTIN
+
+  - name: stg_ecommerce__leads_qualified
+    description: Qualified Leads data
+    columns:
+      - name: mql_id
+        description: Identifier for Marketing Qualified Lead (MQL)
+      - name: first_contact_date
+        description: Date of first contact with the lead
+      - name: landing_page_id
+        description: Identifier for the landing page where the lead originated
+      - name: origin
+        description: Origin of the lead
+
+  - name: stg_ecommerce__order_reviews
+    description: "Order Reviews Data"
+    columns:
+      - name: review_id
+        description: Review ID
+        tests:
+          - not_null
+      - name: order_id
+        description: Order ID
+      - name: review_score
+        description: Review Score
+        tests:
+          - not_null
+          - accepted_values:
+              values: [1, 2, 3, 4, 5]
+      - name: review_comment_title
+        description: Review Comment Title
+      - name: review_comment_message
+        description: Review Comment Message
+      - name: review_creation_date
+        description: Review Creation Date
+      - name: review_answer_timestamp
+        description: Review Answer Timestamp
+
+
+  - name: stg_ecommerce__order_items
+    description: "Order Items Data"
+    columns:
+      - name: order_id
+        description: Order ID
+        tests:
+          - not_null
+      - name: order_item_id
+        description: Order Item ID
+      - name: product_id
+        description: Product ID
+      - name: seller_id
+        description: Seller ID
+      - name: shipping_limit_date
+        description: Shipping Limit Date
+      - name: price
+        description: Price
+      - name: delivery_charges
+        description: Delivery Charges
+      - name: order_value
+        description: Order Value

@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: marketing_funnel
+    description: "Marketing data"
+    database: RAWDATA_DB
+    tables:
+      - name: leads_closed
+        description: "Closed leads data"
+      - name: leads_qualified
+        description: "Qualified Leads data"

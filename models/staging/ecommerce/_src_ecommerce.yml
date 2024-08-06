@@ -1,0 +1,25 @@
+version: 2
+
+sources:
+  - name: ecommerce
+    description: "E-commerce data"
+    database: RAWDATA_DB
+    tables:
+      - name: customers
+        description: "Customer data"
+      - name: geolocation
+        description: "Geolocation data"
+      - name: orders
+        description: "Order data"
+      - name: order_items
+        description: "Order items data"
+      - name: order_payments
+        description: "Order payments data"
+      - name: order_reviews
+        description: "Order reviews data"
+      - name: products
+        description: "Product data"
+      - name: product_category_name_translation
+        description: "Product category name translations"
+      - name: sellers
+        description: "Seller data"
